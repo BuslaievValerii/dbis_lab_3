@@ -77,10 +77,6 @@ class Game(db.Model):
 		self.moves = moves
 		self.opening_name = opening_name
 		self.opening_ply = opening_ply
-# ----------------------------------------------------------
-
-# ----------------------------------------------------------
-# 
 
 @app.route('/insert', methods=['GET','POST'])
 def insert():
@@ -129,6 +125,12 @@ def insert():
 		db.session.commit()
 	return redirect(url_for('index'))
 
+# ----------------------------------------------------------
+
+# ----------------------------------------------------------
+# PRESENTATION LAYER
+# Vizualization of data from database without changing them
+# Presentation of database on .html pages
 
 @app.route('/')
 def index():
@@ -163,7 +165,12 @@ def show_games(page=1):
 	last_page = math.ceil(Game.query.count() / NUM_OF_ENTRIES)
 	return render_template('show_games.html', games=Game.query[start:end], last_page=last_page)
 
+# ----------------------------------------------------------
 
+# ----------------------------------------------------------
+# PERSISTANCE LAYER
+# Working with database using information from the user
+# Creating and deleting data from database
 
 @app.route('/player/add_player', methods=['GET', 'POST'])
 def add_player():
