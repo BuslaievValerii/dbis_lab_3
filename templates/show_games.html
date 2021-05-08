@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<style type="text/css">
+			td {
+				border : 1px solid black;
+				background : white;
+			}
+			th {
+				border : 1px solid black;
+				background : white;
+			}
+			table {
+				border : 1px solid black;
+				text-align : center;
+				margin: auto;
+				background : white;
+			}
+			a {
+				padding : 2px;
+				text-align : center;
+				font-size: 25px;
+			}
+			h1 {
+				text-align : center;
+				font-size: 48px;
+			}
+			body {
+				background : silver;
+			}
+		</style>
+		<title>
+			Games
+		</title>
+	</head>
+	<body>
+		{%- for message in get_flashed_messages() %}
+			{{ message }}
+		{%- endfor %}
+
+		<h1>Games</h1>
+		<a href="{{ url_for('add_game') }}">Add game</a><br>
+		<a href="{{ url_for('index') }}">Back to main page</a>
+
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>rated</th>
+					<th>created_at</th>
+					<th>last_move_at</th>
+					<th>turns</th>
+					<th>victory_status</th>
+					<th>winner</th>
+					<th>increment_code</th>
+					<th>white_id</th>
+					<th>black_id</th>
+					<th>moves</th>
+					<th>opening_name</th>
+					<th>opening_ply</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for game in games %}
+					<tr>
+						<td>{{ game.id }}</td>
+						<td>{{ game.rated }}</td>
+						<td>{{ game.created_at }}</td>
+						<td>{{ game.last_move_at }}</td>
+						<td>{{ game.turns }}</td>
+						<td>{{ game.victory_status }}</td>
+						<td>{{ game.winner }}</td>
+						<td>{{ game.increment_code }}</td>
+						<td>{{ game.white_id }}</td>
+						<td>{{ game.black_id }}</td>
+						<td>{{ game.moves }}</td>
+						<td>{{ game.opening_name }}</td>
+						<td>{{ game.opening_ply }}</td>
+						<th>
+							<form action="/game/delete" method="POST">
+								<input type="hidden" name="game.id" value="{{ game.id }}"/>
+								<input type="submit" name="delete" value="Delete" />
+							</form>
+						</th>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ url_for('show_games', page=1) }}">1</a>
+		<a href="{{ url_for('show_games', page=2) }}">2</a>
+		<a href="{{ url_for('show_games', page=3) }}">3</a>
+		...
+		<a href="{{ url_for('show_games', page=last_page) }}">{{ last_page }}</a>
+
+	</body>
+</html>

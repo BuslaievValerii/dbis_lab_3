@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<style type="text/css">
+			td {
+				border : 1px solid black;
+				background : white;
+			}
+			th {
+				border : 1px solid black;
+				background : white;
+			}
+			table {
+				border : 1px solid black;
+				text-align : center;
+				margin: auto;
+				background : white;
+			}
+			a {
+				padding : 2px;
+				text-align : center;
+				font-size: 25px;
+			}
+			h1 {
+				text-align : center;
+				font-size: 48px;
+			}
+			body {
+				background : silver;
+			}
+		</style>
+		<title>
+			Time increements
+		</title>
+	</head>
+	<body>
+		{%- for message in get_flashed_messages() %}
+			{{ message }}
+		{%- endfor %}
+
+		<h1>Time Increment</h1><br>
+		<a href="{{ url_for('index') }}">Back to main page</a>
+
+		<table>
+			<thead>
+				<tr>
+					<th>increment_code</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for increment in increments %}
+					<tr>
+						<td>{{ increment.increment_code }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ url_for('show_increment', page=1) }}">1</a>
+		<a href="{{ url_for('show_increment', page=2) }}">2</a>
+		<a href="{{ url_for('show_increment', page=3) }}">3</a>
+		<a href="{{ url_for('show_increment', page=last_page) }}">{{ last_page }}</a>
+</body>
+</html>

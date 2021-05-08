@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			a {
+				padding : 2px;
+				text-align : center;
+				font-size: 25px;
+			}
+			h1 {
+				text-align : center;
+				font-size: 48px;
+			}
+			body {
+				background : silver;
+			}
+			form {
+				font-size: 25px;
+			}
+		</style>
+		<title>
+			Add player
+		</title>
+	</head>
+	<body>
+		<h3>Form to add a player</h3>
+		<hr/>
+
+		{%- for category, message in get_flashed_messages(with_categories = true) %}
+			<div class = "alert alert-danger" style="color:red; font-size:25px;">
+				{{ message }}
+			</div>
+		{%- endfor %}
+
+		<form action="{{ request.path }}" method="POST">
+			<label for="player_id">Player id</label><br>
+			<input type="text" name="player_id" placeholder="Player Id" /><br>
+			<label for="player_rating">Player rating</label><br>
+			<input type="text" name="player_rating" placeholder="Player rating"><br>
+			<input type="submit" name="Submit" />
+		</form>
+
+		<a href="{{ url_for('show_players', page=1) }}">Come back to table</a>
+
+	</body>
+</html>

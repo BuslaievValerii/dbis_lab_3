@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		a {
+			padding : 2px;
+			text-align : center;
+			font-size: 25px;
+		}
+		h1 {
+			text-align : center;
+			font-size: 48px;
+		}
+		body {
+			background : silver;
+		}
+		li {
+			text-align : center;
+		}
+		p {
+			color: red;
+			text-align : center;
+			font-size: 32px;
+		}
+		input {
+			text-align : center;
+			font-size: 25px;
+		}
+	</style>
+	<title>
+		Main page
+	</title>
+</head>
+<body>
+	<li>
+		<ul><a href="{{url_for('show_players', page=1)}}">Players</a></ul>
+		<ul><a href="{{url_for('show_increment', page=1)}}">Time Increment</a></ul>
+		<ul><a href="{{url_for('show_opening', page=1)}}">Opening names</a></ul>
+		<ul><a href="{{url_for('show_games', page=1)}}">Games</a></ul>
+		<ul><form action="/insert" method="POST">
+			<input type="hidden" name="insert" value="insert" />
+			<input type="submit" name="insert" value="Insert data" />
+		</form></ul>
+	</li>
+	<p>Beware! "Insert" button will start inserting all the data from the original dataset. It's over 20k rows, so that might take a while.</p>
+</body>
+</html>

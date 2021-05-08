@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			a {
+				padding : 2px;
+				text-align : center;
+				font-size: 25px;
+			}
+			h1 {
+				text-align : center;
+				font-size: 48px;
+			}
+			body {
+				background : silver;
+			}
+			form {
+				font-size: 25px;
+			}
+		</style>
+		<title>
+			Add game
+		</title>
+	</head>
+	<body>
+		<h3>Form to add a game</h3>
+		<hr/>
+
+		{%- for category, message in get_flashed_messages(with_categories = true) %}
+			<div class = "alert alert-danger" style="color:red; font-size:25px;">
+				{{ message }}
+			</div>
+		{%- endfor %}
+
+		<form action="{{ request.path }}" method="POST">
+			<label for="id">id</label><br>
+			<input type="text" name="id" placeholder="Id" /><br>
+
+			<label for="rated">Rated</label><br>
+			<input type="checkbox" name="rated" value="rated" /><br>
+
+			<label for="created_at">Created at (time as float)</label><br>
+			<input type="text" name="created_at" placeholder="created_at" /><br>
+
+			<label for="last_move_at">Last move at (time as float)</label><br>
+			<input type="text" name="last_move_at" placeholder="last_move_at" /><br>
+
+			<label for="turns">Turns</label><br>
+			<input type="text" name="turns" placeholder="turns" /><br>
+
+			<label for="victory_status">Victory status</label><br>
+			<input type="text" name="victory_status" placeholder="victory_status" /><br>
+
+			<label for="winner">Winner</label><br>
+			<input type="text" name="winner" placeholder="winner" /><br>
+
+			<label for="increment_code">Increment code</label><br>
+			<input type="text" name="increment_code" placeholder="increment_code" /><br>
+
+			<label for="white_id">White id</label><br>
+			<input type="text" name="white_id" placeholder="white Id" /><br>
+
+			<label for="black_id">Black id</label><br>
+			<input type="text" name="black_id" placeholder="black Id" /><br>
+
+			<label for="moves">Moves</label><br>
+			<textarea name="moves" placeholder="moves"></textarea><br>
+
+			<label for="opening_name">Opening name</label><br>
+			<input type="text" name="opening_name" placeholder="opening_name" /><br>
+
+			<label for="opening_ply">Turns in opening</label><br>
+			<input type="text" name="opening_ply" placeholder="opening_ply" /><br>
+
+			<input type="submit" name="Submit" />
+		</form>
+
+		<a href="{{ url_for('show_games', page=1) }}">Come back to table</a>
+
+	</body>
+</html>

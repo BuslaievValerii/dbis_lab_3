@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<style type="text/css">
+			td {
+				border : 1px solid black;
+				background : white;
+			}
+			th {
+				border : 1px solid black;
+				background : white;
+			}
+			table {
+				border : 1px solid black;
+				text-align : center;
+				margin: auto;
+				background : white;
+			}
+			a {
+				padding : 2px;
+				text-align : center;
+				font-size: 25px;
+			}
+			h1 {
+				text-align : center;
+				font-size: 48px;
+			}
+			body {
+				background : silver;
+			}
+		</style>
+		<title>
+			Players
+		</title>
+	</head>
+	<body>
+		{%- for message in get_flashed_messages() %}
+			{{ message }}
+		{%- endfor %}
+
+		<h1>Players</h1>
+		<a href="{{ url_for('add_player') }}">Add player</a><br>
+		<a href="{{ url_for('index') }}">Back to main page</a>
+
+		<table>
+			<thead>
+				<tr>
+					<th>player_id</th>
+					<th>player_rating</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for player in players %}
+					<tr>
+						<td>{{ player.player_id }}</td>
+						<td>{{ player.player_rating }}</td>
+						<th>
+							<form action="/player/delete" method="POST">
+								<input type="hidden" name="player_id" value="{{ player.player_id }}"/>
+								<input type="submit" name="delete" value="Delete" />
+							</form>
+						</th>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ url_for('show_players', page=1) }}">1</a>
+		<a href="{{ url_for('show_players', page=2) }}">2</a>
+		<a href="{{ url_for('show_players', page=3) }}">3</a>
+		...
+		<a href="{{ url_for('show_players', page=last_page) }}">{{ last_page }}</a>
+	</body>
+</html>
