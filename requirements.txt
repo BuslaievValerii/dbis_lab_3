@@ -1,0 +1,6 @@
+Flask
+Flask-SQLAlchemy
+NumPy
+Pandas
+gunicorn
+psycopg2
