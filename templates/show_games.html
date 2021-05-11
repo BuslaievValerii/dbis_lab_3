@@ -80,7 +80,7 @@
 						<td>{{ game.opening_ply }}</td>
 						<th>
 							<form action="/game/delete" method="POST">
-								<input type="hidden" name="game.id" value="{{ game.id }}"/>
+								<input type="hidden" name="id" value="{{ game.id }}"/>
 								<input type="submit" name="delete" value="Delete" />
 							</form>
 						</th>
